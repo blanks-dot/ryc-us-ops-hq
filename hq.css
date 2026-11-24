@@ -1,0 +1,58 @@
+/* Shared site nav for all US Ops HQ pages. Same look and order on every page. */
+.hqnav{display:flex;align-items:center;gap:2px;background:#ebebf2;border-radius:999px;padding:4px;margin-left:auto;flex-wrap:nowrap;font:600 14px/1 'DM Sans',system-ui,sans-serif;max-width:100%;overflow-x:auto;scrollbar-width:none}
+.hqnav::-webkit-scrollbar{display:none}
+.hqnav a{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;color:#091f77;text-decoration:none;white-space:nowrap}
+.hqnav a:hover{background:#dedeea}
+.hqnav a.on,.hqnav a.on:hover{background:#091f77;color:#fff}
+.hqnav a.home{border-right:1px solid #d3d3e0;border-radius:999px 0 0 999px;margin-right:2px}
+.hqnav a.home.on{border-radius:999px}
+.hqnav svg{width:15px;height:15px;flex:none}
+@media (max-width:900px){.hqnav{margin-left:0;width:100%;justify-content:space-between}.hqnav a{padding:7px 9px;font-size:13px}.hqnav a.home span{display:none}}
+
+/* No early wrapping: let headings and subtitles use the full width */
+h1,h2,h3,.h2,.mega,h2.big{text-wrap:wrap!important}
+header.top>div:first-child{flex:1 1 420px;min-width:0}
+header.top .sub{max-width:none!important}
+
+/* Dropdowns size to what they show, with the arrow right next to the text */
+.fbar select,.tools select,td select{appearance:none;-webkit-appearance:none;width:auto;min-width:0;max-width:100%;padding-right:32px!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%23091f77' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:right 12px center!important;background-size:11px 8px!important;cursor:pointer}
+td select{padding-right:26px!important;background-position:right 8px center!important}
+
+/* Only buttons look like buttons: labels and names read as text */
+.tagx{background:none!important;padding:0!important;border-radius:0!important;text-transform:none!important;letter-spacing:0!important;font:600 13px/1 'DM Sans',system-ui,sans-serif!important;color:#4a5893!important;margin-left:12px!important;vertical-align:3px!important}
+.tagx.pk{color:#e03870!important}
+.ws .who{background:none!important;padding:0!important;border-radius:0!important;font-weight:500!important;font-size:13.5px!important;color:#4a5893!important}
+.ws .who+.who::before{content:", "}
+.ws{gap:0!important}
+.stt{background:none!important;padding:0!important;border-radius:0!important;font-weight:600!important;font-size:13.5px!important}
+.stt.s-new{color:#091f77!important}.stt.s-hold{color:#e03870!important}
+/* Sentence-case table headers and detail labels */
+th,td[data-l]::before,#dr .k{text-transform:none!important;letter-spacing:0!important}
+th{font-size:13px!important}
+
+/* One photo banner, on the Tracker only */
+main:has(.fbar)::before{content:"";display:block;aspect-ratio:4.2/1;max-height:260px;width:100%;border-radius:20px;margin-bottom:20px;background:url(img/banner-tracker.jpg) center/cover no-repeat}
+@media (max-width:760px){main:has(.fbar)::before{aspect-ratio:2.6/1;border-radius:14px}}
+
+/* Dropdowns: arrow sits right after the text at any width (width set by hq.js) */
+.fbar select,.tools select,td select,.add select{white-space:nowrap;text-overflow:ellipsis}
+.add select{appearance:none;-webkit-appearance:none;padding-right:30px!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%23091f77' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:right 11px center!important;background-size:11px 8px!important}
+
+/* One header on every page: same height, padding, title size and switcher position */
+body>header,header.top{position:sticky!important;top:0!important;z-index:30!important;display:flex!important;align-items:center!important;flex-wrap:nowrap!important;gap:24px!important;min-height:72px;padding:12px 24px!important;background:#fff!important;border-bottom:1px solid #e3e2ec!important;box-sizing:border-box}
+body>header h1,header.top h1{font:800 22px/1.1 'Bricolage Grotesque',system-ui,sans-serif!important;letter-spacing:-.02em!important;margin:0!important;color:#091f77!important}
+body>header .sub,header.top .sub{display:block!important;font:400 13px/1.4 'DM Sans',system-ui,sans-serif!important;color:#4a5893!important;margin-top:3px!important}
+.hqnav{flex:none}
+@media (max-width:900px){body>header,header.top{flex-wrap:wrap!important;gap:10px!important;padding:10px 14px!important}body>header>div:first-child,header.top>div:first-child{flex-basis:100%}}
+
+/* Tracker intro sits above the photo, full width */
+main:has(.fbar){display:flex;flex-direction:column}
+main:has(.fbar)>*{min-width:0}
+.lead{order:-1;margin:4px 0 18px;font:500 17px/1.55 'DM Sans',system-ui,sans-serif;color:#091f77}
+main:has(#tb) .lead{order:0;margin:4px 0 18px}
+@media (max-width:900px){body>header .sub,header.top .sub{display:none!important}}
+.hqnav a.home{border-right:0!important}
+
+/* Chapters photo banner (a different photo from the Tracker) */
+main:has(#tb)::before{content:"";display:block;aspect-ratio:4.2/1;max-height:260px;width:100%;border-radius:20px;margin-bottom:20px;background:url(img/banner-chapters.jpg) center/cover no-repeat}
+@media (max-width:760px){main:has(#tb)::before{aspect-ratio:2.6/1;border-radius:14px}}

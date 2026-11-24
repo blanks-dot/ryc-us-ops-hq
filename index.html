@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>US Ops HQ: start here</title>
+<meta name="description" content="Run Your City US Ops home: why we do this, how the four tabs fit together, and where everything lives">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="hq.css">
+<style>
+:root{--sh:0 1px 2px rgba(9,31,119,.05),0 10px 28px rgba(9,31,119,.07);--ink:#091f77;--ink2:#4a5893;--ink3:#7f88b5;--pink:#e03870;--pinkwash:#fdeef3;--line:#e3e2ec;--mist:#f5f5f9;--paper:#fff;
+ --fd:'Bricolage Grotesque',system-ui,sans-serif;--fb:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--mist);color:var(--ink);font:16px/1.55 var(--fb);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+h1,h2,h3{font-family:var(--fd);letter-spacing:-.02em;margin:0;line-height:1.08}
+
+/* Header: same shape as the other four pages */
+header.top{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 24px}
+header.top h1{font:800 22px/1.1 var(--fd)}
+header.top .sub{font-size:13px;color:var(--ink2);margin-top:3px}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+section{padding:56px 0 8px}
+.eyebrow{font:700 12px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.h2{font-size:clamp(28px,3.4vw,40px);font-weight:800}
+.lede{font-size:17px;color:var(--ink2);margin:12px 0 0}
+
+/* Hero */
+.hero{position:relative;min-height:600px;display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:var(--ink)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,31,119,.95) 0%,rgba(9,31,119,.78) 34%,rgba(9,31,119,.15) 66%,rgba(9,31,119,0) 100%)}
+.hero .wrap{position:relative;z-index:1;padding-top:64px;padding-bottom:56px;width:100%}
+.hero .eyebrow{color:#c9cff0}
+.hero h2{font-size:clamp(34px,4.6vw,60px);font-weight:800;}
+.hero p{font-size:19px;margin:14px 0 0;color:#e6e9f8}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font:700 15px/1 var(--fb);text-decoration:none;white-space:nowrap}
+.btn.pk{background:var(--pink);color:#fff}
+.btn.pk:hover{background:#c92d62}
+.btn.gh{background:rgba(255,255,255,.12);color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55)}
+.btn.gh:hover{background:rgba(255,255,255,.22)}
+.photo-credit{position:absolute;right:16px;bottom:10px;z-index:1;font-size:11px;color:rgba(255,255,255,.7)}
+
+
+/* Why: photo + quote mosaic */
+.why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:320px;gap:12px;margin-top:26px}
+.tile{position:relative;border-radius:20px;overflow:hidden;background:var(--ink)}
+.tile img{width:100%;height:100%;object-fit:cover}
+.tile.big{grid-row:1/3}
+.q{background:#fff;box-shadow:var(--sh);border-radius:20px;padding:30px;display:flex;flex-direction:column}
+.q::before{content:"\201C";font:800 64px/.8 var(--fd);color:var(--pink);margin-bottom:14px}
+.q cite{margin-top:auto!important;padding-top:16px}
+.q blockquote{margin:0;font:600 22px/1.32 var(--fd);letter-spacing:-.01em}
+.q cite{font:500 13px/1.4 var(--fb);font-style:normal;color:var(--ink3);margin-top:14px;display:block}
+.q.navy{background:var(--ink);color:#fff;box-shadow:none}
+.q.navy cite{color:#b7bfe6}
+.tile .over{position:absolute;left:0;right:0;bottom:0;padding:18px 20px;background:linear-gradient(0deg,rgba(9,31,119,.92),rgba(9,31,119,0));color:#fff}
+.tile .over blockquote{margin:0;font:600 18px/1.3 var(--fd)}
+.tile .over cite{display:block;font:500 12.5px/1.4 var(--fb);font-style:normal;color:#cdd3f1;margin-top:8px}
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
+.pillars .pl-k{grid-column:1/-1;font:700 13px/1 var(--fb);color:var(--ink3);margin:22px 0 2px}
+.pillars>div:not(.pl-k){background:#ebebf2;border-radius:20px;padding:24px 26px}
+.pillars b{display:block;font:800 26px/1.1 var(--fd);letter-spacing:-.02em;margin-bottom:6px}
+.pillars span{font-size:15.5px;color:var(--ink2)}
+
+/* Four tabs */
+.tabs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:26px}
+.tab{display:flex;flex-direction:column;background:#fff;box-shadow:var(--sh);border-radius:20px;overflow:hidden;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.tab:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(9,31,119,.10)}
+.tab .shot{aspect-ratio:16/8;overflow:hidden;background:var(--mist)}
+.tab .shot img{width:100%;height:100%;object-fit:cover;object-position:top left}
+.tab .body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:14px;flex:1}
+.tab .ttl{display:flex;align-items:center;gap:12px}
+.tab .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;font:700 14px/30px var(--fb);text-align:center}
+.tab h3{font-size:26px;font-weight:800}
+.tab .qn{font:600 17px/1.35 var(--fd);color:var(--ink)}
+.tab dl{margin:0;display:grid;grid-template-columns:108px 1fr;gap:8px 14px;font-size:14.5px}
+.tab dt{font:600 13.5px/1.6 var(--fb);color:var(--ink3)}
+.tab dd{margin:0;color:var(--ink2)}
+.tab .go{margin-top:auto;font:700 15px/1 var(--fb);color:var(--ink);display:inline-flex;gap:6px;align-items:center}
+.tab:hover .go{color:var(--pink)}
+
+/* Season */
+.season{margin-top:26px;background:#fff;box-shadow:var(--sh);border-radius:20px;padding:24px}
+.ph{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.ph div{border-radius:12px;padding:14px 14px 16px;background:var(--mist);border:1.5px solid transparent}
+.ph b{display:block;font:700 16px/1.2 var(--fd)}
+.ph .when{display:block;font:600 13px/1.4 var(--fb);color:var(--ink3);margin:2px 0 8px}
+.ph p{margin:0;font-size:13.5px;line-height:1.45;color:var(--ink2)}
+.ph div.now{background:#fff;border-color:var(--ink);box-shadow:0 6px 18px rgba(9,31,119,.10)}
+.ph .tag{display:none;font:700 13px/1 var(--fb);color:var(--pink);margin-bottom:8px}
+.ph div.now .tag{display:block}
+.nowline{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;margin-top:18px;padding-top:4px}
+.nowline p{margin:0;font-size:15px;display:flex;flex-wrap:wrap;gap:6px 28px}
+.nowline .ay{color:var(--ink2)}
+.nowline .ay b{color:var(--ink)}
+.btn.nv{background:var(--ink);color:#fff}
+.btn.nv:hover{background:#13308f}
+
+/* Week */
+.steps{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.steps li{display:flex;gap:14px;padding:22px 24px;position:relative;background:#fff;border-radius:18px;box-shadow:var(--sh)}
+
+.steps .n{flex:none;width:32px;height:32px;border-radius:50%;background:var(--ink);color:#fff;font:700 15px/32px var(--fb);text-align:center}
+.steps .when{font:600 13px/1.3 var(--fb);color:var(--ink3)}
+.steps b{display:block;font:700 19px/1.25 var(--fd);margin:2px 0 4px}
+.steps p{margin:0;font-size:15px;color:var(--ink2)}
+.steps a{font-weight:700;color:var(--ink)}
+.std{display:flex;align-items:center;gap:20px;margin-top:12px;padding:16px 24px;background:#ebebf2;border-radius:18px;flex-wrap:wrap}
+.std-k{font:700 15px/1.2 var(--fd);white-space:nowrap}
+.std ul{list-style:none;margin:0;padding:0;display:flex;gap:10px 28px;flex-wrap:wrap;font-size:15px;color:var(--ink2)}
+.std li b{color:var(--ink)}
+
+/* Photo band */
+.band{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:12px;margin-top:56px}
+.band img{width:100%;height:300px;object-fit:cover;border-radius:16px}
+@media (max-width:760px){.band{grid-template-columns:1fr 1fr;margin-top:40px}.band img{height:200px}.band img:last-child{grid-column:1/-1}}
+
+/* Roles */
+.roles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:26px}
+.role{background:#fff;box-shadow:var(--sh);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.role h3{font-size:22px}
+.role .who{font-weight:600;font-size:14.5px;color:var(--pink)}
+.role p{margin:0;font-size:14.5px;color:var(--ink2)}
+.ladder{margin-top:14px;font-size:14.5px;color:var(--ink2)}
+.ladder b{color:var(--ink)}
+
+/* Links */
+.links{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:26px}
+.lg .note{margin:-4px 0 12px;font-size:13.5px;color:var(--ink2)}
+.lg .note b{color:var(--pink)}
+.lg{background:#fff;box-shadow:var(--sh);border-radius:16px;padding:20px}
+.lg h3{font-size:17px;margin-bottom:10px}
+.lg ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.lg a{font-size:14.5px;font-weight:600;text-decoration:none;color:var(--ink);display:flex;gap:6px;align-items:baseline}
+.lg a::after{content:"\2197";font-size:12px;color:var(--ink3)}
+.lg a:hover{color:var(--pink)}
+
+/* Footer */
+footer{margin-top:64px;background:var(--ink);color:#fff}
+footer .wrap{display:grid;grid-template-columns:1fr;gap:28px;padding-top:44px;padding-bottom:44px;align-items:center}
+footer .tag{font:800 clamp(34px,4.6vw,54px)/1 var(--fd);letter-spacing:-.02em}
+footer .tag em{font-style:normal;color:var(--pink)}
+footer p{margin:0 0 10px;font-size:14.5px;color:#cdd3f1}
+footer p b{color:#fff}
+
+@media (max-width:980px){
+ .why{grid-auto-rows:280px}
+ .roles,.links{grid-template-columns:1fr 1fr}
+ .ph{grid-template-columns:1fr 1fr}
+    }
+@media (max-width:760px){
+ header.top{padding:10px 14px;gap:10px}
+ .wrap{padding:0 16px}
+ section{padding:40px 0 4px}
+ .hero{min-height:580px}
+ .hero img{object-position:62% 40%}
+ .hero::after{background:linear-gradient(0deg,rgba(9,31,119,.96) 0%,rgba(9,31,119,.85) 50%,rgba(9,31,119,.1) 100%)}
+ .hero .wrap{padding-top:200px;padding-bottom:44px}
+ .q blockquote{font-size:22px}
+ .why{grid-template-columns:1fr 1fr;grid-auto-rows:220px}
+ .why .q{grid-column:1/-1;height:auto}
+ .q blockquote{font-size:20px}
+ .pillars,.steps{grid-template-columns:1fr}
+ .tabs,.roles,.links,.ph, .tab dl{grid-template-columns:1fr;gap:2px}
+ .tab dd{margin-bottom:8px}
+ footer .wrap{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+ <div><h1>US Ops HQ</h1><div class="sub">Run Your City US Ops, start here</div></div>
+ <nav class="hqnav" aria-label="US Ops HQ pages"><a class="home on" href="./" aria-current="page"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.2 10 3.5l7 5.7V16a1 1 0 0 1-1 1h-3.5v-4.5h-5V17H4a1 1 0 0 1-1-1z"/></svg><span>Overview</span></a><a href="playbook-a.html">Playbook</a><a href="tasks.html">Tasks</a><a href="tracker.html">Tracker</a><a href="chapters.html">Chapters</a></nav>
+</header>
+
+<div class="hero">
+ <img src="img/start-line.jpg" alt="Kids exploding off the start line in a race on the grass">
+ <div class="wrap">
+  <h2>Where every kid is empowered to reach their starting line</h2>
+  <p>Everything US Ops needs, in one place</p>
+  <div class="cta">
+   <a class="btn pk" href="playbook-a.html">New here? Read the playbook &rarr;</a>
+   <a class="btn gh" href="tracker.html">This week: open the Tracker</a>
+  </div>
+ </div>
+</div>
+
+<div class="wrap">
+ <!-- WHY -->
+ <section id="why">
+  <h2 class="h2">What it looks like when we get it right</h2>
+  <div class="why">
+   <div class="tile"><img src="img/tunnel.jpg" alt="A grinning girl running through a high-five tunnel of college athletes" loading="lazy"></div>
+   <div class="q navy"><blockquote>I didn't know I was fast. Now I know I'm fast.</blockquote><cite>Mia, age 7, Run Charlottesville</cite></div>
+   <div class="tile"><img src="img/arms-up.jpg" alt="A young boy throwing both arms up on the track" loading="lazy"></div>
+   <div class="q"><blockquote>In her first session she struggled to make it more than 200 meters without walking. In our last session, she ran a mile without stopping and loved it</blockquote><cite>Volunteer, Run Evanston</cite></div>
+   <div class="tile"><img src="img/coach-water.jpg" alt="A college athlete high-fiving a young boy" loading="lazy"></div>
+   <div class="q"><blockquote>This is really the only time she got to play with other kids</blockquote><cite>A parent, shared by Run Louisville</cite></div>
+  </div>
+ </section>
+
+ <!-- FOUR TABS -->
+ <section id="tabs">
+  <h2 class="h2">Four tabs, one system</h2>
+  <div class="tabs">
+   <a class="tab" href="playbook-a.html">
+    <div class="shot"><img src="img/tabs/playbook.jpg" alt="Preview of the Playbook tab" loading="lazy"></div>
+    <div class="body">
+     <div class="ttl"><span class="n">1</span><h3>Playbook</h3></div>
+     <div class="qn">How do we work, and what do we expect of each other?</div>
+     <dl>
+      <dt>Inside</dt><dd>Our why, 2027 targets, team standards, the weekly meeting, who decides, and red zone rules</dd>
+      <dt>Open it when</dt><dd>You're new, or unsure who makes the call</dd>
+      <dt>Who</dt><dd>Everyone, once a season</dd>
+     </dl>
+     <span class="go">Open the Playbook &rarr;</span>
+    </div>
+   </a>
+   <a class="tab" href="tasks.html">
+    <div class="shot"><img src="img/tabs/tasks.jpg" alt="Preview of the Tasks grid" loading="lazy"></div>
+    <div class="body">
+     <div class="ttl"><span class="n">2</span><h3>Tasks</h3></div>
+     <div class="qn">Who does what, and when in the season?</div>
+     <dl>
+      <dt>Inside</dt><dd>Every task on one grid: roles down the side, season phases across the top. Click a task for detail</dd>
+      <dt>Open it when</dt><dd>You're asking &ldquo;is this mine?&rdquo;</dd>
+      <dt>Who</dt><dd>Everyone, best on a laptop</dd>
+     </dl>
+     <span class="go">Open Tasks &rarr;</span>
+    </div>
+   </a>
+   <a class="tab" href="tracker.html">
+    <div class="shot"><img src="img/tabs/tracker.jpg" alt="Preview of the Tracker tab" loading="lazy"></div>
+    <div class="body">
+     <div class="ttl"><span class="n">3</span><h3>Tracker</h3></div>
+     <div class="qn">What's happening this week, and what's stuck?</div>
+     <dl>
+      <dt>Inside</dt><dd>Every task with its owner, deadline and status, key season moments, and your weekly check-in, which writes the meeting agenda</dd>
+      <dt>Open it when</dt><dd>Every week, before the US Ops meeting</dd>
+      <dt>Who</dt><dd>Everyone, weekly</dd>
+     </dl>
+     <span class="go">Open the Tracker &rarr;</span>
+    </div>
+   </a>
+   <a class="tab" href="chapters.html">
+    <div class="shot"><img src="img/tabs/chapters.jpg" alt="Preview of the Chapters tab" loading="lazy"></div>
+    <div class="body">
+     <div class="ttl"><span class="n">4</span><h3>Chapters</h3></div>
+     <div class="qn">Who looks after each chapter?</div>
+     <dl>
+      <dt>Inside</dt><dd>Every chapter with the season it started, its owner, coordinator, status and notes</dd>
+      <dt>Open it when</dt><dd>You're moving a chapter forward</dd>
+      <dt>Who</dt><dd>Interns and coordinators</dd>
+     </dl>
+     <span class="go">Open Chapters &rarr;</span>
+    </div>
+   </a>
+  </div>
+ </section>
+
+ <!-- SEASON -->
+ <section id="season">
+  <h2 class="h2">Where we are in the season</h2>
+  <div class="season">
+   <div class="ph" id="ph">
+    <div data-m="11,12,5,6"><span class="tag">Now</span><b>Plan + recruit</b><span class="when">Nov-Dec / May-Jun</span><p>Act on last season's learnings, set the roadmap, and get new chapters ready to kick off</p></div>
+    <div data-m="12,1,6,7"><span class="tag">Now</span><b>Set up</b><span class="when">Dec-Jan / Jun-Jul</span><p>Get every confirmed chapter set up with accounts, tools and a full leadership team</p></div>
+    <div data-m="1,2,7,8"><span class="tag">Now</span><b>Prep + launch</b><span class="when">Jan-Feb / Jul-Aug</span><p>Launch every chapter: location, dates, families signed up, first session ready</p></div>
+    <div data-m="3,4,9,10"><span class="tag">Now</span><b>In season</b><span class="when">Mar-Apr / Sep-Oct</span><p>Keep sessions running safely and well, and catch problems early</p></div>
+    <div data-m="4,5,6,10,11,12"><span class="tag">Now</span><b>Handoff + close</b><span class="when">Apr-Jun / Oct-Dec</span><p>Close cleanly: money in, leaders handed off, learnings captured</p></div>
+   </div>
+   <div class="nowline"><p><span id="nowtxt">See every task for the phases we're in now</span><span class="ay"><b>All year:</b> Keep the team responsive and chapters connected</span></p><a class="btn nv" href="tracker.html">Open this week's Tracker &rarr;</a></div>
+  </div>
+ </section>
+
+ <!-- WEEK -->
+ <section id="week">
+  <h2 class="h2">Our week</h2>
+  <ol class="steps">
+   <li><span class="n">1</span><div><div class="when">Before the meeting</div><b>Post your check-in</b><p>In the <a href="tracker.html">Tracker</a>, 24 hours ahead: done, now, blocked</p></div></li>
+   <li><span class="n">2</span><div><div class="when">The meeting</div><b>30 minutes, cameras on</b><p>One win, overdue and blocked, one decision, commitments</p></div></li>
+   <li><span class="n">3</span><div><div class="when">After</div><b>Tracker updated</b><p>Everyone is clear on what they own next week</p></div></li>
+  </ol>
+  <div class="std">
+   <div class="std-k">Team standards</div>
+   <ul>
+    <li><b>24 hours</b> to reply on Slack</li>
+    <li><b>48 hours</b> to reply to chapters</li>
+    <li><b>No silent failures:</b> flag it the moment something slips</li>
+   </ul>
+  </div>
+ </section>
+
+
+ <div class="band" aria-hidden="true">
+  <img src="img/long-jump.jpg" alt="" loading="lazy">
+  <img src="img/sign.jpg" alt="" loading="lazy">
+  <img src="img/smile.jpg" alt="" loading="lazy">
+ </div>
+
+ <!-- ROLES -->
+ <section id="roles">
+  <h2 class="h2">Four roles. One owner for every task</h2>
+  <div class="roles">
+   <div class="role"><h3>Lead</h3><div class="who">Catherine</div><p>Sets direction, owns anything that goes to all chapters, makes the calls</p></div>
+   <div class="role"><h3>Coordinator</h3><div class="who">Sierra, Whitney</div><p>Runs the systems: pipeline, setup, insurance, comms, data</p></div>
+   <div class="role"><h3>Intern</h3><div class="who">Alaysia, Lily, Aisling, Nicole</div><p>Takes over each chapter once the coordinator assigns it, start to finish</p></div>
+   <div class="role"><h3>AI / COO</h3><div class="who">Josh</div><p>Runs the automated work, with input from all US Ops members</p></div>
+  </div>
+  <p class="ladder"><b>Stuck?</b> Intern to coordinator to lead. Safety incidents skip the line: chapters alert the lead right away</p>
+ </section>
+
+ <!-- LINKS -->
+ <section id="links">
+  <h2 class="h2">Where things live</h2>
+  <div class="links">
+   <div class="lg"><h3>Chapters</h3><ul>
+    <li><a href="https://docs.google.com/spreadsheets/d/1vr2Yfx8JkNu37GpOQY1U61VP4MOtrcdpj6JykgqM0kE" target="_blank" rel="noopener">Chapter Outreach Tracker</a></li>
+    <li><a href="https://docs.google.com/spreadsheets/d/1qedr-gJygzdCM7njyaZt--shCLJNbHCeK7d9tqb4jo8" target="_blank" rel="noopener">New chapter accounts</a></li>
+    <li><a href="https://drive.google.com/file/d/1wD-uQyoTmyLMBVacJy0FVhaNcXRojdN1/view" target="_blank" rel="noopener">Chapter Playbook 2026</a></li>
+    <li><a href="https://docs.google.com/document/d/1Rxd2-dwhQXANEKROaiwXs4c7KnSMAwOWELHZft4FVPI" target="_blank" rel="noopener">LT turnover plan</a></li>
+   </ul></div>
+   <div class="lg"><h3>Priorities and the app</h3><ul>
+    <li><a href="https://app.runyourcity.org/status/grid" target="_blank" rel="noopener">App Status Tracker</a></li>
+    <li><a href="https://app.runyourcity.org/analytics" target="_blank" rel="noopener">App Sign-ups</a></li>
+    <li><a href="https://docs.google.com/spreadsheets/d/1UtUsKa0WM1JYGKCyetT21e2bnk3z5x686OGOQXpUneQ" target="_blank" rel="noopener">Priority Tracker</a></li>
+   </ul></div>
+   <div class="lg"><h3>Insurance and money</h3><ul>
+    <li><a href="https://docs.google.com/spreadsheets/d/1JiGFz76dHmbAYWG-zzGcj_-Rf4usyWuwAyZQHkNPFFY" target="_blank" rel="noopener">Outstanding insurance invoices</a></li>
+    <li><a href="https://docs.google.com/document/d/1t4mB6c0TFAp3tJ4-NDSV0YyqZzNSRom-ae31x6RezdY" target="_blank" rel="noopener">Insurance Fee &amp; Reimbursement Guide</a></li>
+   </ul></div>
+   <div class="lg"><h3>Board</h3><ul>
+    <li><a href="https://docs.google.com/presentation/d/1-FmNzXFoTohM9th17xb2J2NwmSLIdkn-nh90dMRjuuE" target="_blank" rel="noopener">Q4 2026 board deck</a></li>
+   </ul></div>
+  </div>
+ </section>
+</div>
+
+<footer>
+ <div class="wrap">
+  <div class="tag">Together <em>we can</em></div>
+ </div>
+</footer>
+
+<script>
+(function(){
+ var m=new Date().getMonth()+1,names=[];
+ document.querySelectorAll('#ph > div').forEach(function(d){
+  if(d.dataset.m.split(',').map(Number).indexOf(m)>-1){d.classList.add('now');names.push(d.querySelector('b').textContent)}
+ });
+ if(names.length){document.getElementById('nowtxt').innerHTML='<b>Right now:</b> '+names.join(' and ')}
+})();
+</script>
+</body>
+</html>

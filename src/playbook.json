@@ -1,0 +1,346 @@
+{
+  "title": "US Ops playbook",
+  "subtitle": "What we stand for, how we work, and how we decide. Pairs with the task grid.",
+  "tags": {
+    "tbd": "to decide",
+    "fill": "to fill in",
+    "draft": "draft",
+    "new": "new this year",
+    "stake": "stake in the ground",
+    "proposal": "proposal",
+    "pdraft": "proposed draft"
+  },
+  "story": {
+    "label": "Why we're here",
+    "mission": "Run Your City is committed to building an inclusive community through the sport of running. We aim to provide every child, regardless of ability, gender or socioeconomic background, the opportunity to grow into healthy, confident, and inspired individuals.",
+    "brand_line": "Where every kid is empowered to reach their starting line",
+    "tagline": "Together we can",
+    "values": [
+      {
+        "k": "Belong",
+        "t": "Every child feels safe, seen, and celebrated"
+      },
+      {
+        "k": "Move",
+        "t": "Movement is joyful, free, and for everyone"
+      },
+      {
+        "k": "Grow",
+        "t": "Every step is a chance to grow"
+      }
+    ],
+    "chapters": [
+      {
+        "k": "started",
+        "when": "2018",
+        "title": "How we started",
+        "items": [
+          {
+            "t": "Founded in 2018 in Charlottesville, Virginia by UVA student-athletes"
+          },
+          {
+            "t": "Set a goal in 2024 to reach 10,000 kids by 2035"
+          }
+        ]
+      },
+      {
+        "k": "today",
+        "when": "Fall 2026",
+        "title": "Where we are today",
+        "stats": [
+          {
+            "n": "19,757",
+            "l": "kids have taken part",
+            "src": "live site counter, Nov 15, 2026"
+          },
+          {
+            "n": "106",
+            "l": "college chapters in the network; 102 running in Fall 2026",
+            "src": "app, Oct 29, 2026"
+          },
+          {
+            "n": "38 + DC",
+            "l": "states",
+            "src": "live site, Nov 2026"
+          },
+          {
+            "n": "2,472",
+            "l": "volunteers",
+            "src": "live site counter, Nov 15, 2026"
+          }
+        ],
+        "items": [
+          {
+            "t": "89% of kids came away more interested in sports and being active"
+          },
+          {
+            "t": "86% of kids grew in confidence and self-esteem"
+          },
+          {
+            "t": "96% of kids felt welcomed, encouraged and that they belonged"
+          }
+        ],
+        "items_src": "about 900 parent and caregiver survey responses, as of June 2026"
+      },
+      {
+        "k": "next",
+        "when": "2027",
+        "title": "Where we're going next",
+        "items": [
+          {
+            "t": "Grow sustainably, not by force: keep the chapters we have strong"
+          },
+          {
+            "t": "Help every chapter reach 30+ kids, the one real predictor of a chapter lasting"
+          },
+          {
+            "t": "2027 targets: new chapters, % of chapters continuing, kids and volunteers reached",
+            "s": "fill"
+          }
+        ]
+      },
+      {
+        "k": "dream",
+        "when": "2040",
+        "title": "The dream",
+        "items": [
+          {
+            "t": "Every kid is introduced to sport"
+          },
+          {
+            "t": "1 million kids by 2040",
+            "src": "RYC Goals 2026+"
+          },
+          {
+            "t": "A world where all children have access to the physical, social, and emotional benefits of sports"
+          }
+        ]
+      }
+    ],
+    "stories": {
+      "title": "Stories that stuck with us",
+      "s": "fill",
+      "t": "Two or three short stories every team member can retell in a minute"
+    }
+  },
+  "team": {
+    "label": "How US Ops works",
+    "principles_title": "What good looks like",
+    "owner": "Owner = you make sure it happens and gets communicated. Pull in anyone for input. It can't slip silently.",
+    "roles": [
+      {
+        "key": "L",
+        "owns": [
+          "Sets direction and season goals",
+          "Owns everything that goes to all chapters, incl. the parent newsletter (kickoff, mid-season, wrap-up)",
+          "Runs the weekly ops call, kickoff and end-of-season calls",
+          "Owns info@runyourcity.org and safety incidents",
+          "Builds and runs leadership training",
+          "Celebrates impact at every level and empowers the team, every week"
+        ],
+        "escalates": "Final call on US Ops decisions"
+      },
+      {
+        "key": "C",
+        "owns": [
+          "Runs the pipeline: interest calls and go/no-go",
+          "Assigns confirmed chapters to interns",
+          "Runs insurance, facility forms and invoices",
+          "Runs group calls when chapters share a problem",
+          "Owns us-ops@runyourcity.org, the playbook and chapter materials"
+        ],
+        "escalates": "Escalates to the lead"
+      },
+      {
+        "key": "I",
+        "owns": [
+          "Takes each assigned chapter start to finish",
+          "Locks location, dates and leadership team",
+          "Checks the session-one gate",
+          "Flags struggling chapters and wins",
+          "Makes sure leader handoffs happen"
+        ],
+        "escalates": "Escalates to the coordinator"
+      },
+      {
+        "key": "A",
+        "owns": [
+          "Finds priority schools and athletes",
+          "Sets up chapter accounts, web page and app",
+          "Runs automated check-ins and reminders",
+          "Sends automatic end-of-season emails"
+        ],
+        "escalates": "Brings questions to the lead"
+      }
+    ],
+    "standards_title": "Team standards",
+    "standards": [
+      {
+        "t": "Lock the weekly meeting time; cameras on",
+        "s": "draft"
+      },
+      {
+        "t": "Reply on Slack within 24 hours",
+        "s": "draft"
+      },
+      {
+        "t": "Reply to chapters within 48 hours (email or text)"
+      },
+      {
+        "t": "No silent failures: flag it the moment something slips"
+      },
+      {
+        "t": "A 'redshirt or graduate' path for anyone who can't meet the standards",
+        "s": "draft"
+      },
+      {
+        "t": "Have fun and make this a fulfilling experience"
+      }
+    ]
+  },
+  "rules": {
+    "label": "How we decide",
+    "items": [
+      {
+        "t": "Anything that goes to all chapters goes through the lead"
+      },
+      {
+        "t": "Interns escalate to the coordinator; coordinators escalate to the lead"
+      },
+      {
+        "t": "Chapters alert the lead about any safety incident right away"
+      },
+      {
+        "t": "The owner decides and tells everyone affected; input is welcome, silence is not"
+      },
+      {
+        "t": "The lead owns info@runyourcity.org; coordinators own us-ops@runyourcity.org"
+      },
+      {
+        "t": "No more GroupMes; connect chapters across cohorts by email",
+        "src": "decided Nov 23"
+      },
+      {
+        "t": "Chapters reach US Ops by email and text; we reply within 48 hours",
+        "src": "decided Nov 23"
+      }
+    ]
+  },
+  "triggers": {
+    "label": "Chapter triggers and pause rules",
+    "items": [
+      {
+        "t": "Before session one, check the gate: safety basics in place, leadership trained, handoff done. Then go live or push the start"
+      },
+      {
+        "t": "If a season is pushed back: pause the chapter in the app, update the web page, email signups (copy info@runyourcity.org)"
+      },
+      {
+        "t": "Don't cancel the insurance invoice if the chapter already started"
+      },
+      {
+        "t": "Merge a chapter into a nearby one, or move a family, when that serves kids better"
+      },
+      {
+        "t": "Flag struggling chapters and wins every week, so they get support or recognition"
+      },
+      {
+        "t": "Red zone: a chapter with under 30 signups, or any parent complaint in the past month (month or week, to confirm)",
+        "s": "stake",
+        "k": "triage"
+      },
+      {
+        "t": "How often we check in on red-zone chapters",
+        "s": "tbd"
+      },
+      {
+        "t": "Pause: a chapter that misses 2 key deadlines (choosing a location, setting the leadership team, selecting session dates), after being reminded 3+ times before each",
+        "s": "stake",
+        "k": "pause"
+      },
+      {
+        "t": "Who decides a pause, who tells families, and how a chapter restarts",
+        "s": "tbd"
+      },
+      {
+        "t": "When to make exceptions, like late insurance",
+        "s": "tbd"
+      }
+    ]
+  },
+  "tracking": {
+    "label": "Meetings and follow-up",
+    "meetings": [
+      {
+        "who": "L",
+        "t": "Weekly US Ops call: fixed time, 30 minutes, everyone brings 3 to 5 chapters, written recap after",
+        "when": "All year",
+        "s": "pdraft"
+      },
+      {
+        "who": "C",
+        "t": "Group calls when several chapters hit the same problem",
+        "when": "As needed"
+      },
+      {
+        "who": "I",
+        "t": "Calls with your own chapters",
+        "when": "As needed"
+      },
+      {
+        "who": "L",
+        "t": "Chapter kickoff call and parent welcome meeting",
+        "when": "Set up / Prep"
+      },
+      {
+        "who": "L",
+        "t": "End-of-season call with awards",
+        "when": "Handoff + close"
+      }
+    ],
+    "proposal_title": "Proposal: task tracker and how we track ownership",
+    "proposal": [
+      {
+        "t": "Every task on the grid has one owning role; the owner sets a date"
+      },
+      {
+        "t": "Every action item from a meeting goes in the recap with an owner and a date"
+      },
+      {
+        "t": "Open items roll into one tracker and get reviewed on the weekly call until closed"
+      },
+      {
+        "t": "Owners mark items done or blocked; nothing closes silently"
+      },
+      {
+        "t": "Priorities and tasks, like the current shared sheet but built into the app"
+      },
+      {
+        "t": "A \"US Ops HQ\" tab in the app for the US Ops team: the to-do tracker, the task grid and the playbook in one place"
+      }
+    ],
+    "proposal_s": "proposal",
+    "agenda_title": "Weekly US Ops meeting (30 min): proposed agenda",
+    "agenda_s": "pdraft",
+    "agenda": [
+      {
+        "t": "24 hrs before: Everyone posts their check-in in the Tracker: what got done, what you're working on now, any roadblocks or risks. The lead reads them before the call"
+      },
+      {
+        "t": "0-3 min: One win: a chapter or teammate shout-out, led by a different person each week"
+      },
+      {
+        "t": "3-15 min: Overdue and blocked: only the items flagged in the Tracker. The owner gives a new date or names what they need"
+      },
+      {
+        "t": "15-25 min: One decision: a single topic picked in advance and framed as a question, led by whoever raised it"
+      },
+      {
+        "t": "25-30 min: Commitments: each person says what they own next week. The Tracker is updated live"
+      },
+      {
+        "t": "After: Recap posted, with an owner and a date on every action item"
+      }
+    ]
+  }
+}

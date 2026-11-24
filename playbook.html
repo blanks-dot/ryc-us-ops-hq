@@ -1,0 +1,269 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Playbook</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"><style>
+/* Layout: white sticky header + calm paper surfaces; navy carries structure, pink is the one accent, blue supports */
+:root{
+ --ink:#091f77;--ink2:#4a5893;--ink3:#8a93bd;
+ --paper:#ffffff;--mist:#f5f5f9;--line:#e3e2ec;
+ --pink:#e03870;--pinkwash:#fdeef3;--blue:#3870e0;--bluewash:#eef3fd;
+ --fd:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;--fb:'DM Sans',ui-sans-serif,system-ui,sans-serif;
+ color-scheme:light}
+*{box-sizing:border-box}html,body{margin:0}[hidden]{display:none!important}
+body{background:var(--mist);color:var(--ink);font:16px/1.55 var(--fb);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:6px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--line);
+ display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-block:12px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+header.top h1{font:800 22px/1.1 var(--fd);letter-spacing:-.02em;margin:0;color:var(--ink)}
+header.top .sub{font-size:13px;color:var(--ink2);margin-top:2px}
+nav.sw{margin-left:auto;display:flex;gap:4px;background:#ebebf2;border-radius:999px;padding:4px;flex-wrap:wrap}
+nav.sw a{color:var(--ink);text-decoration:none;padding:7px 14px;border-radius:999px;font-weight:600;font-size:14px;white-space:nowrap}
+nav.sw a:hover{background:#dedeea}
+nav.sw a.on{background:var(--ink);color:#fff}
+nav.sw a.tasks{border-right:1px solid #d3d3e0;border-radius:999px 0 0 999px;margin-right:2px}
+.tag{display:inline-block;vertical-align:2px;margin-left:6px;font:700 11px/1 var(--fb);letter-spacing:.04em;text-transform:uppercase;padding:4px 7px;border-radius:999px;white-space:nowrap}
+.tag-tbd{color:var(--pink);background:var(--pinkwash)}
+.tag-fill{color:var(--blue);background:var(--bluewash)}
+.tag-draft{color:var(--ink2);background:#ececf3}
+.tag-new{color:var(--ink);background:#e6fbe9}
+.tag-stake{color:#fff;background:var(--pink)}
+.tag-pdraft{color:var(--blue);background:var(--bluewash);border:1px solid #c5d4f6}
+.agenda{background:var(--paper);border:1px dashed #b9c8ee;border-radius:16px;padding:16px 18px;margin-top:22px}
+.tag-proposal{color:var(--blue);background:var(--bluewash);border:1px solid #c5d4f6}
+.src{display:block;font-size:12.5px;color:var(--ink3);margin-top:2px}
+.cap{font-size:13px;color:var(--ink3);margin:.6em 0 0}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.list li{position:relative;padding-left:22px}
+.list li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--ink)}
+.list li.open::before{background:transparent;border:2px solid var(--pink);width:9px;height:9px;left:1px}
+.eyebrow{font:700 13px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--pink)}
+h2.big{font:800 clamp(34px,4.2vw,58px)/1.02 var(--fd);letter-spacing:-.03em;margin:.35em 0 .3em;text-wrap:balance}
+.lede{font-size:19px;line-height:1.5;color:var(--ink2);max-width:34em;margin:0}
+.h3{font:700 19px/1.25 var(--fd);margin:0 0 12px;letter-spacing:-.01em}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.stat b{display:block;font:800 40px/1 var(--fd);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:8px;font-weight:600;line-height:1.35}
+.stat small{display:block;margin-top:6px;font-size:12px;color:var(--ink3)}
+.outs{display:grid;gap:12px}
+.out{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:baseline}
+.out b{font:800 30px/1 var(--fd);color:var(--pink);font-variant-numeric:tabular-nums}
+.values{display:grid;gap:14px}
+.val{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:baseline;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.val:last-child{border-bottom:0;padding-bottom:0}
+.val b{font:800 28px/1 var(--fd);letter-spacing:-.02em}
+.val span{font-size:17px;color:var(--ink2)}
+.placeholder{border:2px dashed #c9cde3;border-radius:16px;padding:16px 18px;display:grid;gap:4px;color:var(--ink2)}
+.placeholder b{color:var(--ink)}
+.journey{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;position:relative}
+.journey::before{content:"";position:absolute;left:8px;right:8px;top:9px;height:3px;background:linear-gradient(90deg,var(--line),var(--ink3) 50%,var(--pink))}
+.journey li{position:relative;padding:30px 14px 0 0}
+.journey li::before{content:"";position:absolute;left:0;top:2px;width:17px;height:17px;border-radius:50%;background:var(--paper);border:3px solid var(--ink3)}
+.journey li.now::before{background:var(--ink);border-color:var(--ink)}
+.journey li.goal::before{background:var(--pink);border-color:var(--pink)}
+.journey .yr{display:block;font:700 13px/1 var(--fb);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.journey li.goal .yr{color:var(--pink)}
+.journey b{display:block;font:700 18px/1.2 var(--fd);margin:6px 0 4px}
+.journey .d{display:block;font-size:14.5px;line-height:1.4;color:var(--ink2)}
+.role{display:flex;flex-direction:column;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px;text-decoration:none;color:var(--ink)}
+.role .rh b{font:800 22px/1.1 var(--fd);letter-spacing:-.02em}
+.role p{margin:0;color:var(--ink2);font-size:15px;line-height:1.45}
+.role ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:15px}
+.role .esc{margin-top:auto;font-size:13.5px;font-weight:600;color:var(--blue)}
+.role-A{background:#f2f2f7}
+.owner{display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-left:0;border-radius:16px;padding:16px 18px;font-size:16.5px}
+.owner b{font:800 15px/1.4 var(--fd);color:var(--pink);white-space:nowrap}
+.ladder{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap}
+.ladder .rung{flex:1 1 150px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.ladder .rung b{display:block;font:800 19px/1.1 var(--fd)}
+.ladder .rung span{display:block;font-size:14px;color:var(--ink2);margin-top:4px}
+.ladder .rung.top{background:var(--ink);border-color:var(--ink);color:#fff}
+.ladder .rung.top span{color:#c9cfee}
+.ladder i{align-self:center;font-style:normal;font:800 22px var(--fd);color:var(--ink3)}
+.gate{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px 20px;display:grid;gap:10px}
+.gate .gh{font:700 17px/1.2 var(--fd)}
+.chk{display:flex;gap:10px;align-items:center;font-size:16px}
+.chk i{width:20px;height:20px;border-radius:6px;border:2px solid var(--ink);display:inline-block;flex:none;position:relative}
+.chk i::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid var(--ink);border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+.gr{display:flex;gap:10px;align-items:center;margin-top:4px;font-size:14px;color:var(--ink2)}
+.gr .go,.gr .push{font-weight:700;padding:6px 12px;border-radius:999px}
+.gr .go{background:var(--ink);color:#fff}.gr .push{background:#ececf3;color:var(--ink)}
+.stake{background:var(--paper);border:2px solid var(--pink);border-radius:18px;padding:18px 20px;display:grid;gap:8px}
+.stake .sk{display:flex;align-items:center;gap:8px;font:700 17px/1.2 var(--fd)}.stake .sk .tag{margin-left:0;order:2}
+.stake .sr{display:grid;grid-template-columns:88px minmax(0,1fr);gap:12px;font-size:16px;line-height:1.5;padding:8px 0;border-top:1px solid var(--line)}.stake .sr b{font:800 16px/1.5 var(--fd);color:var(--pink)}.stake small{font-size:13.5px;color:var(--ink2)}
+.rhythm{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.rhythm li{display:grid;grid-template-columns:130px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line)}
+.rhythm li:last-child{border-bottom:0}
+.rhythm .when{font:700 12.5px/1.2 var(--fb);letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.rhythm .who{font-size:13px;font-weight:700;color:var(--blue);white-space:nowrap}
+@media (max-width:760px){.journey{grid-template-columns:1fr;gap:18px}.journey::before{left:7px;right:auto;top:8px;bottom:8px;width:3px;height:auto;background:linear-gradient(180deg,var(--line),var(--pink))}.journey li{padding:0 0 0 30px}
+ .rhythm li{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}header.top{gap:10px}header.top .sub{display:none}nav.sw{margin-left:0;flex-wrap:nowrap;width:100%;justify-content:space-between}nav.sw a{padding:7px 11px}nav.sw .vn{display:none}
+ .nav .hint{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+.wrap{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:250px minmax(0,1fr);gap:44px;padding-block:22px 80px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hh,71px) + 24px);align-self:start;max-height:calc(100vh - var(--hh,71px) - 48px);overflow-y:auto}
+.sidein{display:flex;flex-direction:column;gap:2px}
+.side a{text-decoration:none;color:var(--ink2);border-radius:12px}
+.side a.top1{display:flex;gap:10px;align-items:center;padding:9px 12px;font-weight:700;font-size:15px;line-height:1.25;color:var(--ink)}
+.side a.top1 .n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#e6e6ef;font:800 12.5px var(--fd)}
+.side a.top1.on{background:var(--ink);color:#fff}.side a.top1.on .n{background:var(--pink);color:#fff}
+.subs{display:flex;flex-direction:column;margin:2px 0 10px 48px;border-left:2px solid var(--line)}
+.subs a{padding:5px 12px;font-size:14px;font-weight:500;border-radius:0 8px 8px 0;margin-left:-2px;border-left:2px solid transparent}
+.subs a:hover{color:var(--ink);background:#ebebf2}.subs a.on{color:var(--ink);font-weight:700;border-left-color:var(--pink)}
+.side a.grid{margin-top:8px;color:var(--blue);font-size:14px;font-weight:600;padding:8px 12px}
+main.final{min-width:0}
+.sec{padding-block:0 36px}
+.sec+.sec{border-top:2px solid var(--line);padding-top:34px}
+.sec,.sub{scroll-margin-top:calc(var(--hh,71px) + 20px)}
+.sub{margin-top:28px}
+.sub>.h3{font-size:22px;margin-bottom:12px}
+.h4{font:700 17px/1.25 var(--fd);margin:0 0 12px}
+.hero{background:var(--ink);color:#fff;border-radius:22px;padding:28px 34px 24px}
+.hero .eyebrow{color:var(--pink)}
+.mega{font:800 clamp(28px,3vw,44px)/1.05 var(--fd);letter-spacing:-.03em;margin:.3em 0 .35em;text-wrap:balance}
+.mis{font-size:16.5px;line-height:1.55;color:#d3d8f3;max-width:52em;margin:0 0 18px}
+.vchips{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}.vchips span{font:700 16px/1 var(--fd);padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.14)}
+.dream{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid rgba(255,255,255,.22)}
+.dream>div{padding:14px 22px 0 0}.dream>div+div{padding-left:22px;border-left:1px solid rgba(255,255,255,.22)}
+.dream span{display:block;font:700 12.5px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:#b8c0ea}
+.dream b{display:block;font:700 20px/1.2 var(--fd);margin-top:8px}
+.vals3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:26px}
+.vals3 .v{padding:4px 0}
+.vals3 b{display:block;font:800 34px/1 var(--fd);letter-spacing:-.025em;color:var(--ink)}
+.vals3 span{display:block;margin-top:8px;font-size:16px;color:var(--ink2)}
+.sh{margin-bottom:10px}
+.h2{font:800 clamp(28px,3vw,42px)/1.08 var(--fd);letter-spacing:-.025em;margin:.35em 0 0;max-width:26ch;text-wrap:balance}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;align-items:start}
+.stats.big{grid-template-columns:repeat(4,minmax(0,1fr))}
+.stats.big .stat{border:0;padding:0 0 0 18px;border-left:3px solid var(--line);border-radius:0;background:none}
+.stats.big .stat:first-child{border-left-color:var(--pink)}
+.stats.big .stat b{font-size:42px}
+.targets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.targets .tg{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px 20px}
+.targets .tg:first-child{background:var(--ink);border-color:var(--ink);color:#fff}
+.targets b{display:block;font:800 42px/1 var(--fd);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.targets span{display:block;margin-top:10px;font-weight:600;line-height:1.35}
+.targets .tg:first-child span{color:#d3d8f3}
+.cap{max-width:62em;margin-top:14px}
+main.final .journey{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (max-width:760px){main.final .journey{grid-template-columns:1fr}}
+.note{margin:14px 0 0;font-size:15px;color:var(--ink2);max-width:62em}
+.owner{margin-top:18px}
+.std{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.std .s{display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;font-size:16.5px;font-weight:600;line-height:1.4}
+.std i{font:800 14px/1 var(--fd);font-style:normal;color:#fff;background:var(--ink);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;flex:none}
+.org{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:28px;display:flex;flex-direction:column;align-items:center;min-width:0}
+.lvl{width:100%;display:flex;flex-direction:column;align-items:center;gap:10px}
+.lvlname{font:700 12px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.csrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px) minmax(0,1fr);gap:20px;width:100%;align-items:end;margin-top:10px}.csrow .ceo{grid-column:2;display:flex;justify-content:center}.csrow .others{grid-column:3;display:flex;flex-wrap:wrap;gap:8px}.csrow .others .cs{min-width:0;flex:1 1 90px;padding:10px 12px}.csrow .ceo .cs{min-width:0}
+.cs{min-width:120px;text-align:center;background:var(--mist);border-radius:14px;padding:12px 16px}
+.cs b{display:block;font:800 18px/1.1 var(--fd)}.cs span{display:block;font-size:13.5px;color:var(--ink2);margin-top:3px}
+.cs.us{background:var(--ink);color:#fff}.cs.us span{color:#c9cfee}
+.stem{width:3px;height:24px;background:var(--line);margin:6px 0}.stem.short{height:18px;margin:4px auto}
+.node{background:var(--paper);border:1.5px solid var(--line);border-radius:16px;padding:14px 18px;display:grid;gap:8px;max-width:440px;width:100%}
+.node b{font:800 19px/1.1 var(--fd)}.node>span{font-size:14px;color:var(--ink2);line-height:1.4}
+.node.lead{background:var(--ink);border-color:var(--ink);color:#fff}.node.lead>span{color:#c9cfee}
+.node.ai{background:#f2f2f7;border-style:dashed}
+.leadrow{margin-top:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px) minmax(0,1fr);gap:20px;width:100%;align-items:center}.leadrow .lead{grid-column:2}.leadrow .ai{grid-column:3;max-width:300px}
+.orgnote{margin:18px 0 0;font-size:14px;color:var(--ink2);text-align:center}
+.branch{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;width:100%;max-width:900px;padding-top:20px;border-top:3px solid var(--line)}
+.branch .col{display:flex;flex-direction:column;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:13.5px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--bluewash);color:var(--ink)}
+.chip.inv{background:rgba(255,255,255,.16);color:#fff}
+.roles4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.role .rh{display:grid;gap:8px}
+.stake{background:var(--paper);border:2px solid var(--pink);border-radius:18px;padding:8px 20px}
+.stake .sr{display:grid;grid-template-columns:100px minmax(0,1fr);gap:14px;font-size:16.5px;line-height:1.5;padding:12px 0}
+.stake .sr+.sr{border-top:1px solid var(--line)}
+.stake .sr b{font:800 17px/1.5 var(--fd);color:var(--pink)}
+.gate{max-width:560px}
+.sub .gate .gh{display:none}
+.stake .sr:first-child{border-top:0}
+.hero{padding:22px 30px 18px}
+.mega{font-size:clamp(26px,2.5vw,38px);margin:0 0 .3em}
+.mis{font-size:15px;line-height:1.5;margin:0 0 14px}
+.dream>div{padding-top:10px}.dream b{font-size:18px;margin-top:5px}.dream span{font-size:11.5px}
+.vals3{gap:24px;margin-top:16px}.vals3 b{font-size:26px}.vals3 span{font-size:15px;margin-top:4px}
+.sub.tight{margin-top:20px}
+.row2{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:36px;align-items:start}
+.stats.big .stat b{font-size:32px}.stats.big .stat{padding-left:14px}.stats.big .stat span{margin-top:4px;font-size:14px}
+.outs{gap:6px}.out{grid-template-columns:56px 1fr;gap:10px}.out b{font-size:22px}.out span{font-size:14.5px}
+main.final .journey li{padding-top:26px}main.final .journey b{font-size:16px;margin:4px 0 2px}main.final .journey .d{font-size:13.5px}
+.targets{grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.targets .tg{padding:12px 14px;border-radius:14px}.targets b{font-size:30px}.targets span{font-size:13.5px;margin-top:6px}
+.note{font-size:14px;margin-top:10px}
+.std{grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.std .s{font-size:14.5px;padding:14px;gap:10px}
+.agenda2{list-style:none;margin:0;padding:0;display:grid;gap:8px;max-width:860px}
+.agenda2 li{display:grid;grid-template-columns:28px 92px minmax(0,1fr);gap:12px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 14px}
+.agenda2 .num{width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font:800 13px var(--fd)}
+.agenda2 .tc{justify-self:start;font:700 12.5px/1 var(--fb);letter-spacing:.04em;text-transform:uppercase;color:var(--blue);background:var(--bluewash);padding:6px 10px;border-radius:999px;white-space:nowrap}
+.agenda2 .tx{font-size:15.5px;line-height:1.4}
+@media (max-width:1100px){.row2{grid-template-columns:1fr}.targets{grid-template-columns:repeat(3,minmax(0,1fr))}.std{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.targets{grid-template-columns:1fr 1fr}.std{grid-template-columns:1fr}.agenda2 li{grid-template-columns:28px minmax(0,1fr)}.agenda2 .tx{grid-column:2}}
+.cs.lead2{background:var(--ink);color:#fff;min-width:200px}.cs.lead2 span{color:#c9cfee}
+.branch{display:grid;grid-template-columns:repeat(2,minmax(0,320px));justify-content:center;gap:24px;width:100%;padding-top:18px;border-top:3px solid var(--line);max-width:700px}
+.team{background:var(--mist);border-radius:14px;padding:12px 14px;display:grid;gap:8px;text-align:center}
+.team .tl b{display:block;font:800 18px/1.1 var(--fd)}.team .tl span{font-size:13.5px;color:var(--ink2)}
+.team .ti{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center}.team .ti small{width:100%;font-size:12.5px;color:var(--ink3)}
+.csrow .others .cs:first-child{flex-basis:100%}
+.std{grid-template-columns:repeat(3,minmax(0,1fr))}
+.csline{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:baseline;margin:0 0 22px;font-size:15.5px;color:var(--ink2)}
+.csline .lab{font:700 12px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}.csline b{color:var(--ink);font-family:var(--fd)}
+.otree{display:flex;flex-direction:column;align-items:center}
+.o-node{display:grid;gap:2px;text-align:center;padding:10px 18px;border:1.5px solid var(--line);border-radius:12px;background:var(--paper);min-width:170px}
+.o-node b{font:800 18px/1.1 var(--fd)}.o-node span{font-size:13.5px;color:var(--ink2)}.o-node em{font-style:normal;font-size:14.5px;font-weight:600;margin-top:6px;color:var(--ink)}
+.o-node.top{background:var(--ink);border-color:var(--ink);color:#fff}.o-node.top span{color:#c9cfee}
+.o-v{width:2px;height:20px;background:var(--ink3)}
+.o-row{display:flex;gap:40px;justify-content:center;padding-top:20px;border-top:2px solid var(--ink3);position:relative}
+.o-key{font-size:13px;color:var(--ink3);margin:12px 0 0}
+.rcs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.rc{border-top:3px solid var(--ink);padding-top:12px}
+.rc h4{margin:0;display:grid;gap:2px}.rc h4 b{font:800 20px/1.1 var(--fd)}.rc h4 span{font-size:14px;font-weight:600;color:var(--blue)}
+.rc p{margin:8px 0;font-size:14.5px;color:var(--ink2);line-height:1.4}
+.rc ul{margin:0;padding-left:16px;display:grid;gap:4px;font-size:14.5px;line-height:1.35}
+.rc .rc-esc{font-size:13.5px;font-weight:600;color:var(--ink);margin-top:10px}
+@media (max-width:1100px){.rcs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.rcs{grid-template-columns:1fr}.o-row{gap:12px}.o-node{min-width:0}}
+.o-row{display:flex;gap:56px;justify-content:center;padding-top:20px;border-top:2px solid var(--ink3)}
+.o-col{display:flex;flex-direction:column;align-items:center}
+.o-ints{display:flex;gap:10px;padding-top:14px;border-top:2px solid var(--line)}
+.o-int{display:grid;gap:2px;text-align:center;padding:8px 14px;border-radius:10px;background:var(--bluewash);min-width:96px}
+.o-int b{font:700 16px/1.1 var(--fd)}.o-int span{font-size:12.5px;color:var(--ink2)}
+.dflow{display:grid;grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr) 36px minmax(0,1fr);align-items:stretch}
+.df-step{background:var(--paper);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:6px;align-content:start}
+.df-step b{font:800 19px/1.1 var(--fd)}.df-step span{font-size:15px;line-height:1.4;color:var(--ink2)}
+.df-step.last{background:var(--ink);border-color:var(--ink);color:#fff}.df-step.last span{color:#d3d8f3}
+.df-arrow{display:grid;place-items:center;font:800 22px var(--fd);color:var(--ink3)}
+@media (max-width:760px){.dflow{grid-template-columns:1fr}.df-arrow{transform:rotate(90deg);height:30px}.o-row{gap:16px}.o-int{min-width:0;padding:6px 10px}}
+@media (max-width:1100px){.two{grid-template-columns:1fr;gap:28px}.targets{grid-template-columns:repeat(2,minmax(0,1fr))}.stats.big{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:22px}}
+@media (max-width:900px){
+ .wrap{grid-template-columns:minmax(0,1fr);gap:0;padding-top:0;overflow-x:clip}.side{min-width:0}
+ .side{top:calc(env(safe-area-inset-top,0px) + var(--hh,71px));z-index:15;max-height:none;overflow:visible;margin-left:calc(-1*max(24px,env(safe-area-inset-left,0px)));margin-right:calc(-1*max(24px,env(safe-area-inset-right,0px)));background:rgba(245,245,249,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+ .sidein{flex-direction:row;overflow-x:auto;scrollbar-width:none;padding:8px max(16px,env(safe-area-inset-left,0px));gap:4px}
+ .subs,.side a.grid{display:none}.side a.top1{white-space:nowrap;padding:7px 12px 7px 7px;font-size:14px}
+ .sec,.sub{scroll-margin-top:calc(var(--hh,71px) + 64px)}.sec:first-child{padding-top:20px}
+ .hero{padding:22px 18px;border-radius:18px}.dream,.vals3{grid-template-columns:1fr}.dream>div+div{padding-left:0;border-left:0}
+ .roles4,.branch{grid-template-columns:1fr}.cs.lead2{min-width:0}.leadrow{grid-template-columns:1fr}.leadrow .lead,.leadrow .ai{grid-column:auto;max-width:none}.org{padding:18px}.cs{min-width:0;flex:1 1 120px}}
+@media (max-width:560px){.targets{grid-template-columns:1fr 1fr}.targets b{font-size:32px}.stats.big .stat b{font-size:32px}.stake .sr{grid-template-columns:1fr;gap:2px}}
+</style><link rel="icon" href="data:,"><link rel="stylesheet" href="hq.css"><script src="hq.js" defer></script><link rel="stylesheet" href="pb.css"></head><body>
+<header class="top"><div><h1>Playbook</h1><div class="sub">Why we're here, what we expect of each other, and how we work</div></div><nav class="hqnav" aria-label="US Ops HQ pages"><a class="home" href="./"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.2 10 3.5l7 5.7V16a1 1 0 0 1-1 1h-3.5v-4.5h-5V17H4a1 1 0 0 1-1-1z"/></svg><span>Overview</span></a><a class="on" href="playbook-a.html" aria-current="page">Playbook</a><a href="tasks.html">Tasks</a><a href="tracker.html">Tracker</a><a href="chapters.html">Chapters</a></nav></header>
+<div class="wrap"><nav class="side" aria-label="Playbook sections"><div class="sidein"><a class="top1" href="#why"><span class="n">1</span><span class="t">Why we&#x27;re here</span></a><div class="subs"><a href="#today">Where we are today</a><a href="#going">Where we&#x27;re going</a></div><a class="top1" href="#expect"><span class="n">2</span><span class="t">Expectations and standards</span></a><div class="subs"><a href="#standards">Team standards</a><a href="#meeting">The weekly meeting</a><a href="#tracking">How we track work</a><a href="#rhythm">Our meeting rhythm</a></div><a class="top1" href="#roles"><span class="n">3</span><span class="t">Roles and who&#x27;s who</span></a><div class="subs"><a href="#org">Who&#x27;s who</a><a href="#cards">What each role owns</a><a href="#decide">How we decide</a></div><a class="top1" href="#struggle"><span class="n">4</span><span class="t">When a chapter struggles</span></a><div class="subs"><a href="#gate">Before session one</a><a href="#redzone">Red zone and pause</a><a href="#other">Other chapter rules</a></div><a class="grid" href="tasks.html">Open the task grid &rarr;</a></div></nav><main class="final"><section id="why" class="sec"><div class="hero">
+<h2 class="mega">Where every kid is empowered to reach their starting line</h2>
+<p class="mis">Run Your City is committed to building an inclusive community through the sport of running. We aim to provide every child, regardless of ability, gender or socioeconomic background, the opportunity to grow into healthy, confident, and inspired individuals.</p>
+<div class="dream"><div><span>The dream</span><b>Every kid is introduced to sport</b></div><div><span>By 2040</span><b>1,000,000 kids reached</b></div><div><span>Our tagline</span><b>Together we can</b></div></div></div>
+<div class="vals3"><div class="v"><b>Belong</b><span>Every child feels safe, seen, and celebrated</span></div><div class="v"><b>Move</b><span>Movement is joyful, free, and for everyone</span></div><div class="v"><b>Grow</b><span>Every step is a chance to grow</span></div></div><div class="sub tight" id="today"><div class="row2"><div><h4 class="h4">Where we are today, Fall 2026</h4><div class="stats big"><div class="stat"><b>19,757</b><span>kids so far</span></div><div class="stat"><b>106</b><span>chapters in the network</span></div><div class="stat"><b>38 + DC</b><span>states</span></div><div class="stat"><b>2,472</b><span>volunteers</span></div></div></div><div><h4 class="h4">What families tell us</h4><div class="outs"><div class="out" style="--p:89%"><b>89%</b><span>of kids more interested in sports and being active</span><i class="bar" aria-hidden="true"></i></div><div class="out" style="--p:86%"><b>86%</b><span>of kids grew in confidence</span><i class="bar" aria-hidden="true"></i></div><div class="out" style="--p:96%"><b>96%</b><span>of kids felt welcomed and that they belonged</span><i class="bar" aria-hidden="true"></i></div></div></div></div></div><div class="sub tight" id="going"><h4 class="h4">Where we're going</h4><ol class="journey"><li class=""><span class="yr">2018</span><b>Founded</b><span class="d">Charlottesville, Virginia, by UVA student-athletes</span></li><li class=""><span class="yr">Fall 2024</span><b>First expansion cohort</b><span class="d">From 1 to 10 chapters</span></li><li class="now"><span class="yr">Fall 2026</span><b>Today</b><span class="d">19,757 kids, 106 chapters</span></li><li class=""><span class="yr">2027</span><b>Next</b><span class="d">120 chapters, 22,000 registrations</span></li><li class=" goal"><span class="yr">2040</span><b>The dream</b><span class="d">1,000,000 kids reached</span></li></ol><h4 class="h4" style="margin-top:22px">2027 targets</h4><div class="targets"><div class="tg"><b>120</b><span>chapters running in fall</span></div><div class="tg"><b>30</b><span>new chapters, 15 a season</span></div><div class="tg"><b>22,000</b><span>registrations</span></div><div class="tg"><b>95%</b><span>of chapters keep running</span></div><div class="tg"><b>90%</b><span>of sessions delivered</span></div><div class="tg"><b>5</b><span>learning sites on what brings kids back</span></div></div><p class="note">We grow only while 95% of chapters keep running and 90% of sessions happen. If either slips, we slow launches. Stronger chapters before more chapters: help every chapter reach 30+ kids, the one real predictor of a chapter lasting.</p></div></section><section id="expect" class="sec"><div class="sh"><div class="eyebrow">2. Expectations, accountability and standards</div><h2 class="h2">What we expect of each other</h2></div><div class="owner"><b>Owner</b><span>Make it happen, pull in anyone you need, never let it slip silently</span></div><div class="sub" id="standards"><h3 class="h3">Team standards</h3><div class="std"><div class="s"><i aria-hidden="true">1</i><span>Lock the weekly meeting time; cameras on</span></div><div class="s"><i aria-hidden="true">2</i><span>Reply on Slack within 24 hours</span></div><div class="s"><i aria-hidden="true">3</i><span>Reply to chapters within 48 hours (email or text)</span></div><div class="s"><i aria-hidden="true">4</i><span>No silent failures: flag it the moment something slips</span></div><div class="s"><i aria-hidden="true">5</i><span>A &#x27;redshirt or graduate&#x27; path for anyone who can&#x27;t meet the standards</span></div><div class="s"><i aria-hidden="true">6</i><span>Have fun and make this a fulfilling experience</span></div></div></div><div class="sub" id="meeting"><h3 class="h3">The weekly US Ops meeting, 30 minutes</h3><ol class="agenda2"><li><span class="num">1</span><span class="tc">24 hrs before</span><span class="tx">Everyone posts their check-in in the Tracker: what got done, what you&#x27;re working on now, any roadblocks or risks. The lead reads them before the call</span></li><li><span class="num">2</span><span class="tc">0-3 min</span><span class="tx">One win: a chapter or teammate shout-out, led by a different person each week</span></li><li><span class="num">3</span><span class="tc">3-15 min</span><span class="tx">Overdue and blocked: only the items flagged in the Tracker. The owner gives a new date or names what they need</span></li><li><span class="num">4</span><span class="tc">15-25 min</span><span class="tx">One decision: a single topic picked in advance and framed as a question, led by whoever raised it</span></li><li><span class="num">5</span><span class="tc">25-30 min</span><span class="tx">Commitments: each person says what they own next week. The Tracker is updated live</span></li><li><span class="num">6</span><span class="tc">After</span><span class="tx">Recap posted, with an owner and a date on every action item</span></li></ol></div><div class="sub" id="tracking"><h3 class="h3">How we track work</h3><ul class="list"><li><span>Every task on the grid has one owning role; the owner sets a date</span></li><li><span>Every action item from a meeting goes in the recap with an owner and a date</span></li><li><span>Open items roll into one tracker and get reviewed on the weekly call until closed</span></li><li><span>Owners mark items done or blocked; nothing closes silently</span></li><li><span>Priorities and tasks, like the current shared sheet but built into the app</span></li><li><span>A &quot;US Ops HQ&quot; tab in the app for the US Ops team: the to-do tracker, the task grid and the playbook in one place</span></li></ul></div><div class="sub" id="rhythm"><h3 class="h3">Our meeting rhythm</h3><ul class="rhythm"><li><span class="when">All year</span><span class="what">Weekly US Ops call: fixed time, 30 minutes, everyone brings 3 to 5 chapters, written recap after</span><span class="who">Lead</span></li><li><span class="when">Set up / Prep</span><span class="what">Chapter kickoff call and parent welcome meeting</span><span class="who">Lead</span></li><li><span class="when">Handoff + close</span><span class="what">End-of-season call with awards</span><span class="who">Lead</span></li><li><span class="when">As needed</span><span class="what">Group calls when several chapters hit the same problem</span><span class="who">Coordinator</span></li><li><span class="when">As needed</span><span class="what">Calls with your own chapters</span><span class="who">Intern</span></li></ul></div><div class="sub" id="good"><h3 class="h3">What good looks like</h3><ul class="list"><li><span>Chapters are crystal clear on what they have to do and what we stand for</span></li><li><span>Chapters feel empowered and supported by the exec team, with one point person all year</span></li><li><span>Chapters feel part of a community and a purpose beyond their own chapter</span></li><li><span>Parents trust and love the program experience</span></li><li><span>US Ops team members have clear expectations, roles, responsibilities and accountability</span></li></ul></div></section><section id="roles" class="sec"><div class="sh"><div class="eyebrow">3. Roles and who's who</div><h2 class="h2">Four roles. One owner for every task</h2></div><div class="sub" id="org"><h3 class="h3">Who&#x27;s who</h3><div class="otree">
+<div class="o-node top"><b>Catherine</b><span>US Ops lead</span></div><div class="o-v" aria-hidden="true"></div>
+<div class="o-row"><div class="o-col"><div class="o-node"><b>Whitney</b><span>Coordinator</span></div><div class="o-v" aria-hidden="true"></div><div class="o-ints"><div class="o-int"><b>Alaysia</b><span>Intern</span></div><div class="o-int"><b>Lily</b><span>Intern</span></div></div></div><div class="o-col"><div class="o-node"><b>Sierra</b><span>Coordinator</span></div><div class="o-v" aria-hidden="true"></div><div class="o-ints"><div class="o-int"><b>Nicole</b><span>Intern</span></div><div class="o-int"><b>Aisling</b><span>Intern</span></div></div></div></div></div></div><div class="sub" id="cards"><h3 class="h3">What each role owns</h3><div class="rcs"><div class="rc"><h4><b>Lead</b><span>Catherine</span></h4><p>Sets direction, owns anything that goes to all chapters, makes the calls</p><ul><li>Sets direction and season goals</li><li>Owns everything that goes to all chapters, incl. the parent newsletter (kickoff, mid-season, wrap-up)</li><li>Runs the weekly ops call, kickoff and end-of-season calls</li><li>Owns info@runyourcity.org and safety incidents</li><li>Builds and runs leadership training</li></ul><p class="rc-esc">Final call on US Ops decisions</p></div><div class="rc"><h4><b>Coordinator</b><span>Sierra, Whitney</span></h4><p>Runs the systems: pipeline, setup, insurance, comms, data</p><ul><li>Runs the pipeline: interest calls and go/no-go</li><li>Assigns confirmed chapters to interns</li><li>Runs insurance, facility forms and invoices</li><li>Runs group calls when chapters share a problem</li><li>Owns <span style="white-space:nowrap">us-ops@runyourcity.org</span>, the playbook and chapter materials</li></ul><p class="rc-esc">Escalates to the lead</p></div><div class="rc"><h4><b>Intern</b><span>Alaysia, Lily, Aisling, Nicole</span></h4><p>Takes over each chapter once the coordinator assigns it, start to finish</p><ul><li>Takes each assigned chapter start to finish</li><li>Locks location, dates and leadership team</li><li>Checks the session-one gate</li><li>Flags struggling chapters and wins</li><li>Makes sure leader handoffs happen</li></ul><p class="rc-esc">Escalates to the coordinator</p></div><div class="rc"><h4><b>AI / COO</b><span>Automated work</span></h4><p>Runs the automated work, with input from all US Ops members</p><ul><li>Finds priority schools and athletes</li><li>Sets up chapter accounts, web page and app</li><li>Runs automated check-ins and reminders</li><li>Sends automatic end-of-season emails</li></ul><p class="rc-esc">Brings questions to the lead</p></div></div><p class="cap">Every task, by role and season, is on the <a href="tasks.html">task grid</a>.</p></div><div class="sub" id="decide"><h3 class="h3">How we decide</h3><div class="dflow"><div class="df-step"><b>Intern</b><span>Owns their chapters start to finish. Escalates to the coordinator.</span></div><div class="df-arrow" aria-hidden="true">&rarr;</div><div class="df-step"><b>Coordinator</b><span>Runs the systems and unblocks interns. Escalates to the lead.</span></div><div class="df-arrow" aria-hidden="true">&rarr;</div><div class="df-step last"><b>Lead</b><span>Makes the final call. Anything that goes to all chapters goes through the lead.</span></div></div><p class="note">Safety incidents skip the line: chapters alert the lead right away.</p><div style="margin-top:20px"><ul class="list"><li><span>The owner decides and tells everyone affected; input is welcome, silence is not</span></li><li><span>The lead owns info@runyourcity.org; coordinators own <span style="white-space:nowrap">us-ops@runyourcity.org</span></span></li><li><span>No more GroupMes; connect chapters across cohorts by email</span></li><li><span>Chapters reach US Ops by email and text; we reply within 48 hours</span></li></ul></div></div></section><section id="struggle" class="sec"><div class="sh"><div class="eyebrow">4. When a chapter struggles</div><h2 class="h2">Catch it early. Decide in the open</h2></div><div class="sub" id="gate"><h3 class="h3">Before session one: the gate</h3><div class="gate"><div class="gh">Before session one: the gate</div><div class="chk"><i aria-hidden="true"></i>Safety basics in place</div><div class="chk"><i aria-hidden="true"></i>Leadership trained</div><div class="chk"><i aria-hidden="true"></i>Handoff done</div><div class="gr"><span class="go">Go live</span><span>or</span><span class="push">Push the start</span></div></div></div><div class="sub" id="redzone"><h3 class="h3">Red zone and pause</h3><div class="stake"><div class="sr"><b>Red zone</b><span>A chapter with under 30 signups, or any parent complaint in the past month.</span></div><div class="sr"><b>Pause</b><span>A chapter that misses 2 key deadlines (choosing a location, setting the leadership team, selecting session dates), after being reminded 3+ times before each, is paused.</span></div></div></div><div class="sub" id="other"><h3 class="h3">Other chapter rules</h3><ul class="list"><li><span>If a season is pushed back: pause the chapter in the app, update the web page, email signups (copy info@runyourcity.org)</span></li><li><span>Merge a chapter into a nearby one, or move a family, when that serves kids better</span></li><li><span>Flag struggling chapters and wins every week, so they get support or recognition</span></li></ul></div></section></main></div>
+<script>(()=>{const h=document.querySelector('header.top'),f=()=>document.documentElement.style.setProperty('--hh',h.offsetHeight+'px');f();addEventListener('resize',f)})();
+const tops=[...document.querySelectorAll('.side a.top1')],subs=[...document.querySelectorAll('.subs a')],all=[...tops,...subs];
+function mark(id){
+ const el=document.getElementById(id);if(!el)return;const sec=el.closest('.sec');
+ tops.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+sec.id));
+ subs.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+id));
+ const a=tops.find(a=>a.classList.contains('on'));if(a&&a.parentElement.scrollWidth>a.parentElement.clientWidth)a.parentElement.scrollTo({left:a.offsetLeft-16,behavior:'smooth'})}
+const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting)mark(en.target.id)})},{rootMargin:'-25% 0px -65% 0px'});
+document.querySelectorAll('.sec,.sub').forEach(s=>io.observe(s));
+all.forEach(a=>a.addEventListener('click',ev=>{ev.preventDefault();const id=a.getAttribute('href').slice(1);document.getElementById(id).scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});history.replaceState(null,'','#'+id);mark(id)}));
+mark(location.hash.slice(1)||'why');if(location.hash)document.getElementById(location.hash.slice(1))?.scrollIntoView();
+</script></body></html>
