@@ -149,10 +149,13 @@ def nav(cur):
     return hqnav(cur)
 
 
+HSUB = {"tracker": "Every task, with its owner, deadline and status", "chapters": "Who looks after each chapter"}
+
+
 def shell(cur, title, h1, sub, css, body, data, js):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)}</title>{FONTS}<style>{CSS}{css}</style>{HQHEAD}</head>
-<body><header class="top"><div><h1>{h1}</h1></div>{nav(cur)}</header>
+<body><header class="top"><div><h1>{h1}</h1><div class="sub">{HSUB.get(cur, "")}</div></div>{nav(cur)}</header>
 <main>{f'<p class="lead">{sub}</p>' if sub else ''}{body}</main><div class="toast" role="status" aria-live="polite"></div>
 <script id="d" type="application/json">{json.dumps(data)}</script>
 <script>{COMMON_JS}{js}</script></body></html>"""
@@ -168,6 +171,19 @@ function toast(m){const t=document.querySelector('.toast');t.textContent=m;t.cla
 
 # ---------------- tracker ----------------
 T_CSS = r"""
+.row{grid-template-columns:26px minmax(0,1fr) 190px 126px 112px 44px!important}
+.edt{border:0;background:none;color:var(--ink3);font:600 13px var(--fb);cursor:pointer;padding:6px 4px;border-radius:8px}
+.edt:hover{color:var(--ink);background:#eef0f7}
+#edlg{border:0;border-radius:20px;padding:0;width:min(520px,92vw);box-shadow:0 20px 60px rgba(9,31,119,.25)}
+#edlg::backdrop{background:rgba(9,31,119,.35)}
+#edlg input[type=text],#edlg input[type=date],#edlg select{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px;background:#fff;margin-top:4px}
+.eown{border:0;padding:0;margin:0}.eown legend{font-weight:600;font-size:14px;margin-bottom:6px}
+#eowners{display:flex;flex-wrap:wrap;gap:6px 16px}
+.ck{display:inline-flex!important;align-items:center;gap:6px;font-weight:500!important;font-size:14px}
+.erow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.danger{color:var(--pink)!important}
+@media (max-width:620px){.row>.edt{grid-column:2;justify-self:start}}
+
 .ag-pre{background:#f5f5f9;border-radius:14px;padding:12px 14px;margin:4px 0 8px}
 .ag-pre-h{font:700 13px/1.2 var(--fb);color:var(--ink3);margin-bottom:6px}
 .ag-pre-r{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:14px;font-size:13.5px;padding:3px 0;color:var(--ink2)}
@@ -259,6 +275,12 @@ T_BODY = r"""
 <form id="addm" class="addm"><input type="date" id="mdt" aria-label="Date" required><input type="text" id="mtx" placeholder="Add a moment" aria-label="Moment" required><button class="btn">Add</button></form></div>
 </aside>
 </div>
+<dialog id="edlg"><form class="dlg" method="dialog"><h2>Edit task</h2>
+<label>Task<input type="text" id="etx" required></label>
+<label>Note <small>optional</small><input type="text" id="enote"></label>
+<fieldset class="eown"><legend>Owners</legend><div id="eowners"></div></fieldset>
+<div class="erow"><label>Deadline<input type="date" id="edue"></label><label>Phase<select id="eph"><option value="close">Fall close</option><option value="plan">Spring plan + recruit</option><option value="all">All year</option></select></label></div>
+<div class="rw"><button class="btn ghost danger" value="del" formnovalidate>Delete task</button><span style="flex:1"></span><button class="btn ghost" value="cancel" formnovalidate>Cancel</button><button class="btn" value="ok">Save</button></div></form></dialog>
 <dialog id="dlg"><form class="dlg" method="dialog"><h2>Your weekly check-in</h2><p class="muted small" style="margin:4px 0 0">Three short answers before the meeting. Specific beats general.</p>
 <label>Who are you?<select id="fwho"></select></label><label>What got done? <small>one per line</small><textarea id="fdone"></textarea></label>
 <label>What are you working on now? <small>one per line</small><textarea id="fnow"></textarea></label><label>Anything blocked or at risk? <small>leave blank if not</small><textarea id="fblk"></textarea></label>
@@ -276,7 +298,8 @@ const MOM0=[['2026-12-15','Chapters confirmed'],['2027-01-01','Outreach starts']
 const TODAY=new Date().toISOString().slice(0,10);const dueOf=t=>S.due[t.id]??t.due0??DUE0[t.id]??'';
 const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];const fmt=d=>{if(!d)return'';const [y,m,dd]=d.split('-');return MON[+m-1]+' '+(+dd)+(y!==TODAY.slice(0,4)?', '+y:'')};
 const late=t=>{const d=dueOf(t);return d&&d<TODAY&&st(t)!=='done'};
-const all=()=>D.tasks.concat(S.extra);const st=t=>S.st[t.id]||t.status;
+S.ed=S.ed||{};S.del=S.del||[];
+const all=()=>D.tasks.concat(S.extra).filter(t=>!S.del.includes(t.id)).map(t=>S.ed[t.id]?{...t,...S.ed[t.id]}:t);const st=t=>S.st[t.id]||t.status;
 let G={};const snap=()=>{G={};all().forEach(t=>G[t.id]=st(t))};snap();const gs=t=>G[t.id]||st(t);
 const team=id=>[id,...D.people.filter(p=>p.reports===id).flatMap(p=>team(p.id))];
 function scopeO(owners){if(!me)return true;const [k,id]=me.split(':');const set=k==='p'?[id]:team(id);return owners.some(o=>set.includes(o))}
@@ -290,7 +313,7 @@ function draw(){
   return `<div class="grp"><div class="grp-h"><h3>${PH[p]}</h3><span>${PHD[p]}, ${r.length} task${r.length===1?'':'s'}</span></div><div class="list">${r.map(t=>{const s=st(t);
    return `<div class="row${s==='done'?' isdone':''}${s!==gs(t)?' changed':''}"><button class="cb${s==='done'?' on':''}" data-cb="${t.id}" aria-label="Mark done: ${esc(t.text)}"></button>
    <div class="tx">${esc(t.text)}${t.note?`<small>${esc(t.note)}</small>`:''}</div>${ws(t)}${t.phase==='all'&&!dueOf(t)?`<span class="due rec">${esc(REC[t.id]||'Ongoing')}</span>`:`<label class="due${late(t)?' late':''}"><span>${late(t)?'Overdue ':'Due '}${esc(fmt(dueOf(t))||'not set')}</span><input type="date" data-due="${t.id}" value="${esc(dueOf(t))}" aria-label="Deadline for ${esc(t.text)}"></label>`}
-   <select class="sts st-${s}" data-t="${t.id}" aria-label="Status of ${esc(t.text)}">${ORD.map(o=>`<option value="${o}"${o===s?' selected':''}>${ST[o]}</option>`).join('')}</select></div>`}).join('')}</div></div>`}).join('');
+   <select class="sts st-${s}" data-t="${t.id}" aria-label="Status of ${esc(t.text)}">${ORD.map(o=>`<option value="${o}"${o===s?' selected':''}>${ST[o]}</option>`).join('')}</select><button class="edt" data-ed="${t.id}" aria-label="Edit ${esc(t.text)}">Edit</button></div>`}).join('')}</div></div>`}).join('');
  document.getElementById('groups').innerHTML=out||'<div class="list empty">Nothing here.</div>';
  const A=all().filter(scope),done=A.filter(t=>S.ch[t.id]&&st(t)==='done'),open=A.filter(t=>st(t)==='doing'),blk=A.filter(t=>st(t)==='blocked'),miss=A.filter(t=>late(t)&&st(t)!=='blocked');
  const CI=Object.entries(S.ci).filter(([pid])=>scopeO([pid]));
@@ -313,6 +336,15 @@ document.addEventListener('click',e=>{const c=e.target.closest('.chip');if(c){F=
  const b=e.target.closest('.cb');if(b){const t=all().find(x=>x.id===b.dataset.cb);setSt(t.id,st(t)==='done'?'doing':'done');toast(st(t)==='done'?'Done':'Reopened')}});
 document.addEventListener('change',e=>{const di=e.target.closest('input[data-due]');if(di){S.due[di.dataset.due]=di.value;save(KEY,S);draw();toast(di.value?'Deadline set to '+fmt(di.value):'Deadline cleared');return}});
 document.addEventListener('click',e=>{const x=e.target.closest('[data-mx]');if(!x)return;const k=x.dataset.mx;const i=S.mom.findIndex(m=>m.k===k);if(i>-1)S.mom.splice(i,1);else S.momx.push(k);save(KEY,S);draw();toast('Moment removed')});
+const edlg=document.getElementById('edlg');let EID=null;
+document.addEventListener('click',e=>{const b=e.target.closest('[data-ed]');if(!b)return;EID=b.dataset.ed;const t=all().find(x=>x.id===EID);
+ document.getElementById('etx').value=t.text;document.getElementById('enote').value=t.note||'';document.getElementById('edue').value=dueOf(t);document.getElementById('eph').value=t.phase;
+ document.getElementById('eowners').innerHTML=tracked.map(p=>`<label class="ck"><input type="checkbox" value="${p.id}"${t.owners.includes(p.id)?' checked':''}> ${esc(p.name)}</label>`).join('');edlg.showModal()});
+edlg.addEventListener('close',()=>{const v=edlg.returnValue;if(!EID)return;
+ if(v==='del'){if(!S.del.includes(EID))S.del.push(EID);save(KEY,S);draw();toast('Task deleted')}
+ else if(v==='ok'){const tx=document.getElementById('etx').value.trim();const ow=[...document.querySelectorAll('#eowners input:checked')].map(i=>i.value);
+  if(tx){S.ed[EID]={text:tx,note:document.getElementById('enote').value.trim(),owners:ow.length?ow:all().find(x=>x.id===EID).owners,phase:document.getElementById('eph').value};S.due[EID]=document.getElementById('edue').value;save(KEY,S);snap();draw();toast('Task updated')}}
+ EID=null});
 document.getElementById('addm').onsubmit=e=>{e.preventDefault();const d=document.getElementById('mdt').value,t=document.getElementById('mtx').value.trim();if(!d||!t)return;S.mom.push({d,t,k:'m'+Date.now()});save(KEY,S);document.getElementById('mtx').value='';document.getElementById('mdt').value='';draw();toast('Moment added')};
 document.addEventListener('change',e=>{const s=e.target.closest('select.sts');if(s){setSt(s.dataset.t,s.value);toast('Status: '+ST[s.value])}});
 const tracked=D.people.filter(p=>p.tracker!==false);

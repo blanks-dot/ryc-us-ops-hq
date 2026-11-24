@@ -224,3 +224,5 @@ main.final .journey li .d{font-size:14.5px!important}
 #today .src-note{margin-top:auto;padding-top:18px}
 .pl-h{margin:26px 0 14px!important}
 .vals3{margin-top:0!important}
+.std .s{min-width:0}.std .s span{min-width:0;overflow-wrap:anywhere}
+@media (max-width:600px){.std{grid-template-columns:1fr!important}}

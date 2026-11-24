@@ -77,7 +77,7 @@ body{background:#f5f5f9}
 .phonehint{display:none}
 @media (max-width:760px){.gscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}.gscroll .grid{min-width:1000px}.phonehint{display:block;margin:8px 16px 0;font-size:13px;color:var(--navy2)}.phonehint a{color:var(--navy);font-weight:700}header .tools{width:100%}}
 </style>%HQHEAD%</head><body>
-<header><div><h1>Every task, by role and season</h1></div>%HQNAV%
+<header><div><h1>Tasks</h1><div class="sub">Every task, by role and season</div></div>%HQNAV%
 </header><div class="tbar"><div class="tools" id="tools"></div></div>
 <p class="phonehint">Built for a laptop. On a phone, swipe the grid sideways, or use the <a href="tracker.html">Tracker</a> for this week's work</p><div class="gscroll"><div class="grid" id="grid"></div></div>
 <div id="dr" role="dialog" aria-label="Task detail"></div>

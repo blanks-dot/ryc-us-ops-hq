@@ -57,3 +57,5 @@ main:has(#tb) .lead{order:0;margin:4px 0 18px}
 main:has(#tb)::before{content:"";display:block;aspect-ratio:4.2/1;max-height:260px;width:100%;border-radius:20px;margin-bottom:20px;background:url(img/banner-chapters.jpg) center/cover no-repeat}
 @media (max-width:760px){main:has(#tb)::before{aspect-ratio:2.6/1;border-radius:14px}}
 @media (max-width:760px){.tools input[type=search]{flex:1 1 100%!important;width:100%!important;min-width:0!important}}
+/* Switcher stays compact on tablets; only fills the row on phones */
+@media (min-width:521px) and (max-width:900px){.hqnav{width:auto!important;justify-content:flex-start!important}.hqnav a.home span{display:inline!important}}
