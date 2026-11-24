@@ -533,8 +533,8 @@ def role_card(k):
 
 
 def triage():
-    rows = [("Red zone", "A chapter with under 30 signups, or any parent complaint in the past month."),
-            ("Pause", "A chapter that misses 2 key deadlines (choosing a location, setting the leadership team, selecting session dates), after being reminded 3+ times before each, is paused.")]
+    rows = [("Red zone", "A chapter with under 30 signups, or any parent complaint in the past month. Its owner steps in with extra support right away: a call with the chapter leads and a plan to get back on track."),
+            ("Pause", "A chapter that misses 2 key deadlines (choosing a location, setting the leadership team, selecting session dates), after being reminded 3+ times before each. Its owner meets with the chapter to push the season back, given the missed deadlines.")]
     return ('<div class="stake">' + "".join(f'<div class="sr"><b>{e(h)}</b><span>{e(b)}</span></div>' for h, b in rows) + '</div>')
 
 
@@ -593,8 +593,8 @@ def view_final():
 <p class="mis">{e(st["mission"])}</p>
 <div class="dream"><div><span>The dream</span><b>Every kid is introduced to sport</b></div><div><span>By 2040</span><b>1,000,000 kids reached</b></div><div><span>Our tagline</span><b>{e(st["tagline"])}</b></div></div></div>
 <div class="vals3">''' + "".join(f'<div class="v"><b>{e(v["k"])}</b><span>{e(v["t"])}</span></div>' for v in st["values"]) + '</div>'
-        + '<div class="sub tight" id="today"><div class="row2"><div><h4 class="h4">Where we are today, Fall 2026</h4>' + stats_final() + '</div>'
-        + f'<div><h4 class="h4">What families tell us</h4>{outcomes_final()}</div></div></div>'
+        + '<div class="sub tight" id="today"><div class="row2"><div><h4 class="h4">Where we are today</h4>' + stats_final() + '<p class="src-note">Kids and volunteers from the live site counter, Nov 15, 2026. Chapters from the app, Oct 29, 2026: 106 in the network, 102 running this fall. States from the live site, Nov 2026.</p></div>'
+        + f'<div><h4 class="h4">What families tell us</h4>{outcomes_final()}<p class="src-note">From about 900 parent and caregiver survey responses, as of June 2026.</p></div></div></div>'
         + '<div class="sub tight" id="going"><h4 class="h4">Where we\'re going</h4>' + journey_final()
         + '<h4 class="h4" style="margin-top:22px">2027 targets</h4><div class="targets">'
         + "".join(f'<div class="tg"><b>{e(n)}</b><span>{e(l)}</span></div>' for n, l in TARGETS) + '</div>'
@@ -627,7 +627,7 @@ def view_final():
         + '<div class="subs">' + "".join(f'<a href="#{sid}">{e(sl)}</a>' for sid, sl in subs) + '</div>'
         for i, (k, lbl, _, _, subs, _) in enumerate(S))
     secs = "".join(
-        f'<section id="{k}" class="sec">' + (f'<div class="sh"><div class="eyebrow">{eb}</div><h2 class="h2">{e(h)}</h2></div>' if h else '') + body + '</section>'
+        f'<section id="{k}" class="sec">' + (f'<div class="sh"><h2 class="h2">{e(h)}</h2></div>' if h else '') + body + '</section>'
         for k, _, eb, h, _, body in S)
     body = f'<div class="wrap"><nav class="side" aria-label="Playbook sections"><div class="sidein">{side}<a class="grid" href="tasks.html">Open the task grid &rarr;</a></div></nav><main class="final">{secs}</main></div>'
     css = r"""

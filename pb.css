@@ -214,3 +214,6 @@ main.final .journey li .d{font-size:14.5px!important}
 #decide>div[style]{margin-top:14px!important}
 .cap{font-size:14px!important;color:var(--ink2)!important}
 .cap a{color:var(--ink);font-weight:700}
+.src-note{margin:18px 0 0;font-size:12.5px;font-style:italic;line-height:1.45;color:var(--ink3)}
+#today .row2>div{display:flex;flex-direction:column}
+#today .src-note{margin-top:auto;padding-top:18px}
