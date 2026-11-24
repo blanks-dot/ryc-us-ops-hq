@@ -110,11 +110,10 @@ dialog{border:0;border-radius:16px;padding:0;max-width:520px;width:calc(100% - 2
 .ck{display:inline-flex!important;align-items:center;gap:6px;font-weight:500!important;font-size:14px}
 .erow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .danger{color:var(--pink)!important}
-@media (max-width:620px){.row>.edt{grid-column:2;justify-self:start}}
+@media (max-width:620px){.row{grid-template-columns:26px minmax(0,1fr)!important}.row>.ws,.row>.sts,.row>.due,.row>.edt{grid-column:2;justify-self:start}.erow{grid-template-columns:1fr}}
 </style><link rel="icon" href="data:,"><link rel="stylesheet" href="hq.css"><script src="hq.js" defer></script></head>
-<body><header class="top"><div><h1>Tracker</h1><div class="sub">Every task, with its owner, deadline and status</div></div><nav class="hqnav" aria-label="US Ops HQ pages"><a class="home" href="./"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.2 10 3.5l7 5.7V16a1 1 0 0 1-1 1h-3.5v-4.5h-5V17H4a1 1 0 0 1-1-1z"/></svg><span>Overview</span></a><a href="playbook-a.html">Playbook</a><a href="tasks.html">Tasks</a><a class="on" href="tracker.html" aria-current="page">Tracker</a><a href="chapters.html">Chapters</a></nav></header>
+<body><header class="top"><div><h1>Tracker</h1><div class="sub">Every US Ops task has an owner and a deadline, so we stay accountable. Success means finishing on time, or flagging early and working with the team to get it done. Silent failures, misses nobody knew about, come up in the weekly meeting so they don't happen again.</div></div><nav class="hqnav" aria-label="US Ops HQ pages"><a class="home" href="./"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.2 10 3.5l7 5.7V16a1 1 0 0 1-1 1h-3.5v-4.5h-5V17H4a1 1 0 0 1-1-1z"/></svg><span>Overview</span></a><a href="playbook-a.html">Playbook</a><a href="tasks.html">Tasks</a><a class="on" href="tracker.html" aria-current="page">Tracker</a><a href="chapters.html">Chapters</a></nav></header>
 <main>
-<p class="lead">Every US Ops task has an owner and a deadline, so we stay accountable. Success means finishing on time, or flagging early and working with the team to get it done. Silent failures, misses nobody knew about, come up in the weekly meeting so they don't happen again.</p>
 <div class="lay">
 <section aria-label="Tasks">
   <div class="fbar">

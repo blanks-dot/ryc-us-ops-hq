@@ -149,14 +149,14 @@ def nav(cur):
     return hqnav(cur)
 
 
-HSUB = {"tracker": "Every task, with its owner, deadline and status", "chapters": "Who looks after each chapter"}
+HSUB = {'tracker': "Every US Ops task has an owner and a deadline, so we stay accountable. Success means finishing on time, or flagging early and working with the team to get it done. Silent failures, misses nobody knew about, come up in the weekly meeting so they don't happen again.", 'chapters': 'Who looks after each chapter'}
 
 
 def shell(cur, title, h1, sub, css, body, data, js):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)}</title>{FONTS}<style>{CSS}{css}</style>{HQHEAD}</head>
 <body><header class="top"><div><h1>{h1}</h1><div class="sub">{HSUB.get(cur, "")}</div></div>{nav(cur)}</header>
-<main>{f'<p class="lead">{sub}</p>' if sub else ''}{body}</main><div class="toast" role="status" aria-live="polite"></div>
+<main>{body}</main><div class="toast" role="status" aria-live="polite"></div>
 <script id="d" type="application/json">{json.dumps(data)}</script>
 <script>{COMMON_JS}{js}</script></body></html>"""
 
@@ -182,7 +182,7 @@ T_CSS = r"""
 .ck{display:inline-flex!important;align-items:center;gap:6px;font-weight:500!important;font-size:14px}
 .erow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .danger{color:var(--pink)!important}
-@media (max-width:620px){.row>.edt{grid-column:2;justify-self:start}}
+@media (max-width:620px){.row{grid-template-columns:26px minmax(0,1fr)!important}.row>.ws,.row>.sts,.row>.due,.row>.edt{grid-column:2;justify-self:start}.erow{grid-template-columns:1fr}}
 
 .ag-pre{background:#f5f5f9;border-radius:14px;padding:12px 14px;margin:4px 0 8px}
 .ag-pre-h{font:700 13px/1.2 var(--fb);color:var(--ink3);margin-bottom:6px}
