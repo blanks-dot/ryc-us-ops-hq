@@ -549,7 +549,7 @@ def journey_final():
            ("Fall 2024", "First expansion cohort", "From 1 to 10 chapters"),
            ("Fall 2026", "Today", "19,757 kids, 106 chapters"),
            ("2027", "Next", "120 chapters, 22,000 registrations"),
-           ("2040", "The dream", "1,000,000 kids reached")]
+           ("2040", "The dream", "1 million kids reached")]
     return '<ol class="journey">' + "".join(
         f'<li class="{"now" if w == "Fall 2026" else ""}{" goal" if w == "2040" else ""}"><span class="yr">{e(w)}</span><b>{e(h)}</b><span class="d">{e(t)}</span></li>'
         for w, h, t in pts) + "</ol>"
@@ -591,10 +591,10 @@ def view_final():
         f'''<div class="hero">
 <h2 class="mega">{e(st["brand_line"])}</h2>
 <p class="mis">{e(st["mission"])}</p>
-<div class="dream"><div><span>The dream</span><b>Every kid is introduced to sport</b></div><div><span>By 2040</span><b>1,000,000 kids reached</b></div><div><span>Our tagline</span><b>{e(st["tagline"])}</b></div></div></div>
-<div class="vals3">''' + "".join(f'<div class="v"><b>{e(v["k"])}</b><span>{e(v["t"])}</span></div>' for v in st["values"]) + '</div>'
-        + '<div class="sub tight" id="today"><div class="row2"><div><h4 class="h4">Where we are today</h4>' + stats_final() + '<p class="src-note">Kids and volunteers from the live site counter, Nov 15, 2026. Chapters from the app, Oct 29, 2026: 106 in the network, 102 running this fall. States from the live site, Nov 2026.</p></div>'
-        + f'<div><h4 class="h4">What families tell us</h4>{outcomes_final()}<p class="src-note">From about 900 parent and caregiver survey responses, as of June 2026.</p></div></div></div>'
+<div class="dream"><div><span>The dream</span><b>Every kid is introduced to sport</b></div><div><span>By 2040</span><b>1 million kids reached</b></div><div><span>Our tagline</span><b>{e(st["tagline"])}</b></div></div></div>
+<h4 class="h4 pl-h">Our pillars</h4><div class="vals3">''' + "".join(f'<div class="v"><b>{e(v["k"])}</b><span>{e(v["t"])}</span></div>' for v in st["values"]) + '</div>'
+        + '<div class="sub tight" id="today"><div class="row2"><div class="col"><h4 class="h4">Where we are today</h4><div class="panel">' + stats_final() + '<p class="src-note">Kids and volunteers from the live site counter, Nov 15, 2026. Chapters from the app, Oct 29, 2026: 106 in the network, 102 running this fall. States from the live site, Nov 2026.</p></div></div>'
+        + f'<div class="col"><h4 class="h4">What families tell us</h4><div class="panel">{outcomes_final()}<p class="src-note">From about 900 parent and caregiver survey responses, as of June 2026.</p></div></div></div></div>'
         + '<div class="sub tight" id="going"><h4 class="h4">Where we\'re going</h4>' + journey_final()
         + '<h4 class="h4" style="margin-top:22px">2027 targets</h4><div class="targets">'
         + "".join(f'<div class="tg"><b>{e(n)}</b><span>{e(l)}</span></div>' for n, l in TARGETS) + '</div>'
